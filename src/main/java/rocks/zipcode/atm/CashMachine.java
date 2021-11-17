@@ -35,9 +35,6 @@ public class CashMachine {
         );
     }
 
-
-    public void deposit(Float amount) {
-
     public boolean userIsLoggedIn() { //method to validate if the log-in id is valid
         //if account data is = null; means user is not logged in = false
         //if account data is valid; true
@@ -46,6 +43,10 @@ public class CashMachine {
         } else {
             return true;
         }
+    }
+
+
+    public void deposit(float amount) {
         if (accountData != null) {
             tryCall(
                     () -> bank.deposit(accountData, amount),
@@ -54,8 +55,7 @@ public class CashMachine {
         }
     }
 
-    public void withdraw(Float amount) {
-
+    public void withdraw(float amount) {
         if (accountData != null) {
              tryCall(
                     () -> bank.withdraw(accountData, amount),
