@@ -70,14 +70,16 @@ public class CashMachineApp extends Application {
 
 
         btnDeposit.setOnAction(e -> {
-            Float amount = Float.parseFloat(txtDeposit.getText()); //changed the Integer.parseInt -> Float.parseFloat
 
-            if(amount < 0){  //if statement to validate negative numbers input
-                areaInfo.setText("This is not a valid number!");
-            }
-            else {
+            Float amount = Float.parseFloat(txtDeposit.getText());
+            cashMachine.deposit(amount);
+            areaInfo.setText(cashMachine.toString());
+            if(amount < 0) {
+                areaInfo.setText("this is not a valid number!");
+              else {
                 cashMachine.deposit(amount);
                 areaInfo.setText(cashMachine.toString());
+          
             }
             clearTxtBoxes();
         });
@@ -86,16 +88,19 @@ public class CashMachineApp extends Application {
 
 
         btnWithdraw.setOnAction(e -> {
-            Float amount = Float.parseFloat(txtWithDraw.getText()); //changed the Integer.parseInt -> Float.parseFloat; to change the deposit
+
+            Float amount = Float.parseFloat(txtWithDraw.getText());
+
             cashMachine.withdraw(amount);
             if(cashMachine.getMsg() != "") {
                 areaInfo.setText(cashMachine.getMsg());
+
             }
             if(amount < 0){ //added this to show invalid number for negatives - but it stopped showing error when trying to overdraft??!
                 areaInfo.setText("This is not a valid number!");
             }
             else{
-                areaInfo.setText(cashMachine.toString());
+                areaInfo.setText( "This is not a valid number!");
             }
 
             clearTxtBoxes();
